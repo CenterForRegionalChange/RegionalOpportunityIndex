@@ -190,7 +190,7 @@ var zLayerLookup = {
     "z_citizen": "Civic Life-Place: US Citizenship, 2007-11 (%)"
 };
 
-var SEARCH_SVC = "http://crcdemo.caes.ucdavis.edu/arcgis/rest/services/ROI/Service_9_boundaries_v4/";
+var SEARCH_SVC = "http://169.237.124.179/arcgis/rest/services/ROI/Service_9_boundaries_v4/";
 var SEARCH = [{
         title: "School Districts",
         index: 4,
