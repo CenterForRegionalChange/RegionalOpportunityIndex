@@ -1,0 +1,44 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+.navbar-inverse {
+  background-color: #00629f;
+  border-color: #00629f;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+	background-color: #00629f;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+	background-color: #008ce3;
+}
+
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.
+.jumbotron {
+    background-color: #e5f1f9;
+    color: inherit;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 1.75;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+
+.sub-page-jumbo {
+    padding-top: 15px !important; padding-bottom: 15px !important; margin-bottom: 10px !important;
+}
+.sub-page-jumbo-headertext {
+    padding-top: 40px !important;
+}
