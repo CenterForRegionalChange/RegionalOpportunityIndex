@@ -11,7 +11,7 @@ var GEOCODE_URL = "http://tasks.arcgis.com/ArcGIS/rest/services/WorldLocator/Geo
 //var PRINT_URL = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task";
 //var PRINT_URL = "http://mapserver.vestra.com/arcgis/rest/services/UCDavis/UCDPrintService/GPServer/Export%20Web%20Map";
 //var PRINT_URL = "http://169.237.124.179/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task";
-var PRINT_URL = "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/ExportWebMap/GPServer/Export%20Web%20Map";
+var PRINT_URL = varSerProv.concat("/arcgis/rest/services/ROI/ExportWebMap/GPServer/Export%20Web%20Map");
 
 // For fixing an issue with the ESRI print return. 
 // The first array element is your internal server address. The second is the external address to replace it with.
@@ -68,55 +68,55 @@ var OP_MAPS = [{
     
 var SERVICES = [{
         name: "ROI Indices",
-        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/Overall_State/",
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/Overall_State/"),
         layerObs: [],
         defaultForMap: [0, 1],
         defaultLayerIndex: [0, 1]
     }, {
         name: "Education", 
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_1_Educ_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_1_Educ_v1/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Economy",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_2_Econ_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_2_Econ_v1/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Housing",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_3_Housing_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_3_Housing_v1/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Mobility",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_4_Mobility_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_4_Mobility_v1/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Health",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_5_Health_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_5_Health_v1/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Social-Political",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_6_SocialPolitical_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_6_SocialPolitical_v1/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Additional Data Layers",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_7_Other_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_7_Other_v1/"),
         layerObs: [],
         defaultForMap: [2],
         defaultLayerIndex: [1]
     }, {
         name: "Other",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_10_Other_v5/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_10_Other_v5/"),
         layerObs: [],
         defaultForMap: [],
         defaultLayerIndex: []
@@ -197,7 +197,7 @@ var zLayerLookup = {
     "z_citizen": "Civic Life-Place: US Citizenship, 2007-11 (%)"
 };
 
-var SEARCH_SVC = "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_9_boundaries_v4/";
+var SEARCH_SVC = varSerProv.concat("/arcgis/rest/services/ROI/Service_9_boundaries_v4/");
 var SEARCH = [{
         title: "School Districts",
         index: 4,
