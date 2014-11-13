@@ -1,4 +1,9 @@
-﻿
+﻿// Services Provider.  Uncomment the line to provide services from the map server
+// Note that the active line will need to be switched when you move code between the development and production servers
+// Additional comments here
+// varSerProv = "http://interact.regionalchange.ucdavis.edu" //Production Server
+varSerProv = "http://crcdemo.caes.ucdavis.edu" //Development Server
+
 // Location of the geocode service
 var GEOCODE_URL = "http://tasks.arcgis.com/ArcGIS/rest/services/WorldLocator/GeocodeServer";
 
@@ -63,55 +68,55 @@ var OP_MAPS = [{
     
 var SERVICES = [{
         name: "ROI Indices",
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_8_Overall_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_8_Overall_v1/",
         layerObs: [],
         defaultForMap: [0, 1],
         defaultLayerIndex: [0, 1]
     }, {
         name: "Education", 
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_1_Educ_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_1_Educ_v1/",
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Economy",
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_2_Econ_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_2_Econ_v1/",
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Housing",
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_3_Housing_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_3_Housing_v1/",
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Mobility",
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_4_Mobility_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_4_Mobility_v1/",
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Health",
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_5_Health_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_5_Health_v1/",
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Social-Political",
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_6_SocialPolitical_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_6_SocialPolitical_v1/",
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Additional Data Layers",
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_7_Other_v1/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_7_Other_v1/",
         layerObs: [],
         defaultForMap: [2],
         defaultLayerIndex: [1]
     }, {
         name: "Other",
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_10_Other_v5/",
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_10_Other_v5/",
         layerObs: [],
         defaultForMap: [],
         defaultLayerIndex: []
