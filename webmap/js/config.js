@@ -63,7 +63,7 @@ var OP_MAPS = [{
     
 var SERVICES = [{
         name: "ROI Indices",
-        url: "http://interact.regionalchange.ucdavis.edu/arcgis/rest/services/ROI/Service_8_Overall_v1/",
+        url: "http://crcdemo.caes.ucdavis.edu/arcgis/rest/services/CA_ROI/Overall_State/",
         layerObs: [],
         defaultForMap: [0, 1],
         defaultLayerIndex: [0, 1]
