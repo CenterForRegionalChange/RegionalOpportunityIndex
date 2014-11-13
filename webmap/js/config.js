@@ -74,37 +74,37 @@ var SERVICES = [{
         defaultLayerIndex: [0, 1]
     }, {
         name: "Education", 
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_1_Educ_v1/"),
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/Educ_State/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Economy",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_2_Econ_v1/"),
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/Econ_State/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Housing",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_3_Housing_v1/"),
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/Housing_State/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Mobility",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_4_Mobility_v1/"),
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/Mobility_State/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Health",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_5_Health_v1/"),
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/Health_State/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
     }, {
         name: "Social-Political",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_6_SocialPolitical_v1/"),
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/Civic_State/"),
         layerObs: [],
         defaultForMap: null,
         defaultLayerIndex: null
