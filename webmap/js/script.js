@@ -202,7 +202,7 @@ function createMap(j) { 'use strict';
                         
                         if (fl.name.indexOf("Regional Opportunity Index") === -1 && $.inArray(fl.name, domainLayerNames) === -1) {
                             regionField = "R" + fl.rendererField;
-                            regionField = regionField.substring(0, 10);
+                            //regionField = regionField.substring(0, 10);
                             
                             if (feature.attributes.hasOwnProperty("CntyNm") && fl.displayField !== "CntyNm") {
                                 countyVal = feature.attributes.CntyNm;
