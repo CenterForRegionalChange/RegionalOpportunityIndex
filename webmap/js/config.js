@@ -125,12 +125,12 @@ var SERVICES = [{
 // format here is -- "z_index_field_name": "Related Layer's NAME in map service",
 var zLayerLookup = {
     // people index
-    "z_edppl_me": "Education Opportunity: People",
-    "z_ecppl_me": "Economic Opportunity: People",
-    "z_hsppl_me": "Housing Opportunity: People",
-    "z_moppl_me": "Mobility/Transportation Opportunity: People",
-    "z_enppl_me": "Health/Environment Opportunity: People",
-    "z_soppl_me": "Civic Life Opportunity: People",
+    "z_edppl_mean": "Education Opportunity: People",
+    "z_ecppl_mean": "Economic Opportunity: People",
+    "z_hsppl_mean": "Housing Opportunity: People",
+    "z_moppl_mean": "Mobility/Transportation Opportunity: People",
+    "z_enppl_mean": "Health/Environment Opportunity: People",
+    "z_soppl_mean": "Civic Life Opportunity: People",
     "z_people_m": "Regional Opportunity Index: People",
     
     // places index
