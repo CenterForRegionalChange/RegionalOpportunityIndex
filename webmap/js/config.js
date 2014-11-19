@@ -110,7 +110,7 @@ var SERVICES = [{
         defaultLayerIndex: null
     }, {
         name: "Additional Data Layers",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_7_Other_v1/"),
+        url: varSerProv.concat("/arcgis/rest/services/ROI/Demog_State/"),
         layerObs: [],
         defaultForMap: [2],
         defaultLayerIndex: [1]
