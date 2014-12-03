@@ -142,7 +142,7 @@ var zLayerLookup = {
     "z_place_mean": "Regional Opportunity Index: Place",
     
     // eduction people domain
-    "z_postsec": "Education-People: College-Educated Adults, 2007-11 (%)",
+    "z_postsec": "Education-People: College-Educated Adults, 2008-12 (%)",
     "z_prof_ela": "Education-People: English Proficiency, 2009-11 (%)",
     "z_prof_math": "Education-People: Math Proficiency, 2009-11 (%)",
     "z_truant": "Education-People: Elementary Truancy Rate, 2009-10 (%)",
@@ -154,8 +154,8 @@ var zLayerLookup = {
     "z_expsusp": "Education-Place: High School Discipline Rate, 2009-10 (%)",
     
     // econ people domain
-    "z_emp": "Economy-People: Employment Rate, 2007-11 (%)",
-    "z_above200fpl": "Economy-People: Minimum Basic Income, 2007-11 (%)",
+    "z_emp": "Economy-People: Employment Rate, 2008-12 (%)",
+    "z_above200fpl": "Economy-People: Minimum Basic Income, 2008-12 (%)",
     
     // econ place domain
     "z_jobs_pc5": "Economy-Place: Job Availability, 2011 (#)",
@@ -165,16 +165,16 @@ var zLayerLookup = {
     "z_bizgr5": "Economy-Place: Business Growth, 2009-11 (%)",
     
     // housing people domain
-    "z_ownhome": "Housing-People: Homeownership, 2007-11 (%)",
-    "z_hsg30": "Housing-People: Housing Cost Burden, 2007-11 (%)",
+    "z_ownhome": "Housing-People: Homeownership, 2008-12 (%)",
+    "z_hsg30": "Housing-People: Housing Cost Burden, 2008-12 (%)",
     
     // housing place domain
-    "z_occup1less": "Housing-Place: Housing Adequacy, 2007-11 (%)",
-    "z_affhousing": "Housing-Place: Housing Affordability, 2007-11",
+    "z_occup1less": "Housing-Place: Housing Adequacy, 2008-12 (%)",
+    "z_affhousing": "Housing-Place: Housing Affordability, 2008-12",
     
     // mobility people domain
-    "z_vehicles": "Mobility/Trans-People: Vehicle Availability, 2007-11 (%)",
-    "z_comm30": "Mobility/Trans-People: Commute Time, 2007-11 (%)",
+    "z_vehicles": "Mobility/Trans-People: Vehicle Availability, 2008-12 (%)",
+    "z_comm30": "Mobility/Trans-People: Commute Time, 2008-12 (%)",
     "z_hsi_rfc": "Mobility/Trans-People: Internet Access, 2013 (#)",
     
     // health/env people domain
@@ -190,11 +190,11 @@ var zLayerLookup = {
     
     // social/political people domain
     "z_voted10": "Civic Life-People: Voting Rates, 2010 (%)",
-    "z_englishwell": "Civic Life-People: English Speakers, 2007-11 (%)",
+    "z_englishwell": "Civic Life-People: English Speakers, 2008-12 (%)",
     
     // social/political place domain    
     "z_sameres": "Civic Life-Place: Neighborhood Stability, 2007-11 (%)",
-    "z_citizen": "Civic Life-Place: US Citizenship, 2007-11 (%)"
+    "z_citizen": "Civic Life-Place: US Citizenship, 2008-12 (%)"
 };
 
 var SEARCH_SVC = varSerProv.concat("/arcgis/rest/services/ROI/Service_9_boundaries_v4/");
