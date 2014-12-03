@@ -116,7 +116,7 @@ var SERVICES = [{
         defaultLayerIndex: [1]
     }, {
         name: "Other",
-        url: varSerProv.concat("/arcgis/rest/services/ROI/Service_10_Other_v5/"),
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/Other_State/"),
         layerObs: [],
         defaultForMap: [],
         defaultLayerIndex: []
@@ -193,7 +193,7 @@ var zLayerLookup = {
     "z_englishwell": "Civic Life-People: English Speakers, 2008-12 (%)",
     
     // social/political place domain    
-    "z_sameres": "Civic Life-Place: Neighborhood Stability, 2007-11 (%)",
+    "z_sameres": "Civic Life-Place: Neighborhood Stability, 2008-12 (%)",
     "z_citizen": "Civic Life-Place: US Citizenship, 2008-12 (%)"
 };
 
