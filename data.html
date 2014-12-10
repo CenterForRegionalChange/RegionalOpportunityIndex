@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>ROI | Data</title>
+	<link rel="stylesheet" href="css/roi.css" media="only screen and (min-width: 1001px)">
+    <link rel="stylesheet" type="text/css" media="only screen and (min-width: 481px) and (max-width: 1000px)" href="css/tablet.css">
+    <link rel="stylesheet" href="css/mobile.css" media="only screen and (max-width:480px)">
+    <link rel="shortcut icon" href="http://mapserver2.vestra.com/demo/ucdmappingregionalchange/youth/img/favicon.png">
+
+	<script src="js/jquery_002.js"></script>
+<script src="js/jquery.js"></script>  
+    
+        <script type=text/javascript>
+    
+    $(function() {
+                $('a').bind('click',function(event){
+                    var $anchor = $(this);
+                    
+                    $('html, body').stop().animate({
+                        scrollTop: $($anchor.attr('href')).offset().top
+                    }, 1500,'easeInOutExpo');
+                    /*
+                    if you don't want to use the easing effects:
+                    $('html, body').stop().animate({
+                        scrollTop: $($anchor.attr('href')).offset().top
+                    }, 1000);
+                    */
+                    event.preventDefault();
+                });
+            });
+            
+
+      
+            
+        </script>
+    <script src="js/pyom.js"></script>
+
+
+</head>
+
+
+<body>
+
+<header>
+<ul id="blue">
+<li id="crc">
+    <a href="http://regionalchange.ucdavis.edu" id="top"> <img src="images/crclogo.gif" alt="crc logo" height="33" width="200" id="logo" ></a>
+</li>
+
+<li id="pyom">
+	<a href="index.html" id="top" >	<h2 style="font-size: 35px;" id="top">Regional Opportunity Index</h2> </a>
+</li>
+
+<li>
+<div id="search">
+
+<script>
+  (function() {
+    var cx = '012146410678385031848:p9djgvgmbz4';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:searchbox-only></gcse:searchbox-only>
+
+</div>
+<div id="icons">
+<p>
+<a href="https://www.facebook.com/pages/Center-for-Regional-Change/75479485977" id="facebook" alt="facebook"><img src="images/facebook.gif" height="25" width="25" alt="facebook"> </a>
+
+</p>
+</div>
+</li>
+</ul>
+<div id='cssmenu'>
+<ul>
+   <li class='has-sub' class='last'><a href='about.html'><span>About</span></a>
+ <ul>
+         <li><a href='about.html#whoweare'><span>Who We Are</span></a></li>
+                  <li><a href='about.html#contact'><span>Contact</span></a></li>
+         <li class='last'><a href='http://regionalchange.ucdavis.edu'><span>Go to CRC</span></a></li>
+         </ul>
+   </li>
+   <li><a href='data.html'><span style="text-decoration:underline;">Data</span></a>
+   </li>
+   <li><a href='equity.html'><span>Equity Analysis</span></a>
+   </li>
+  <li class='has-sub'><a href='resources.html'><span>Resources</span></a>
+      <ul>
+         <li><a href='resources.html#links'><span>Links</span></a></li>
+         <li class='last'><a href='resources.html#stories'><span>Stories</span></a></li>
+      </ul>
+      </li>
+   <li><a href='tutorials.html'><span>Tutorials</span></a>
+   </li>
+   <li><a href='http://interact.regionalchange.ucdavis.edu/roi/webmap.html'><span  class="mapMenu">Go to Maps</span></a>
+   </li>
+   
+</ul>
+</div>
+
+</header>
+
+
+<section id="main">
+
+<article id="data" style="padding-bottom: 100px; font-size:18px;">
+<h3 style="padding-top: 75px;">About the Data</h3>
+<div id="column1" style="margin-left:0px;">
+<p> A full description of our data sources and methodology for calculating the ROI and its various components is available <a href="http://interact.regionalchange.ucdavis.edu/roi/Download_Data/ROI%20Metadata_3.19.14.pdf" alt="Description of Data">here.</a></p>
+
+<p>A full version of the data mapped on this site, including the original indicators and calculated indices, is available for download in excel format <a href="http://interact.regionalchange.ucdavis.edu/roi/Download_Data/ROI_downloadable_data_7.21.14.xlsx" alt="Full data">here.</a></p>
+
+<p>While we have selected what we believe is the best available data sources for our particular indicators, each dataset has certain limitations that are important to keep in mind when using them to analyze conditions in any location. Before using the data, please read the section of the document that describes data limitations and how we have handled them in our index and indicator construction. If you discover any inaccuracies, please inform us by emailing <a href="mailto:swatterson@ucdavis.edu" alt="email Sara Watterson">swatterson@ucdavis.edu.</a></p>
+</div>
+<div id="column3" style="margin-top:-30px;">
+<img src="images/fieldgroup.jpg" width="600px" alt="group working in field">
+</div>
+</article>
+
+</section>
+
+<footer>
+<div class="bottom"> Copyright © UC Davis 2014 |  <a href="mailto:crcinfo@ucdavis.edu " id="top">Contact CRC </a> | <a href="sitemap.html" id="top">Site Map </a> | <a href="http://ucdavis.edu" id="top"> UC Davis </a> | Designed by <a href="http://meghanjordan7.com">Meghan Jordan</a>
+</div>
+</footer>
+
+    </script>
+
+</body>
+</html>

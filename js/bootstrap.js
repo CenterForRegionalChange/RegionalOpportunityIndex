@@ -2003,4 +2003,13 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
     })
   })
 
+
+//new
+
+$('#collapseOne').click(function(){
+		//change text
+		$('.panel-body').toggle();
+	});
+	
+	
 }(jQuery);
