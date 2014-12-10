@@ -1041,7 +1041,8 @@ $(document).ready(function (e) { 'use strict';
     });
 
     $('#rdoClickReport').on('click', function() {
-        $('#dialog-report').dialog('open');    
+        idStartOver();
+		$('#dialog-report').dialog('open');    
     });
     $('#rdoClickIdentify').on('click', function() {
         idStartOver(); 
