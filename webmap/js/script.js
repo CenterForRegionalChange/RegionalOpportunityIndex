@@ -374,6 +374,7 @@ function loadLayerByName(mapIndex, lyrName) { 'use strict';
 }
 
 function mapGfxOver(evt) { 'use strict';
+    // Report: Activates on mouse over of a previously selected tract, and highlights it (teal border) on the map 
     var gfxId, mapIdx, fl;
     
     mapIdx = evt.currentTarget.id.replace('mapDiv', '').replace('_graphics_layer', '');  //mapDiv0_graphics_layer    
@@ -394,7 +395,8 @@ function mapGfxOver(evt) { 'use strict';
 }
 
 function mapGfxOut(evt) { 'use strict';
-    var gfxId, mapIdx, fl;
+    // Report: Activates on mouse leaving of a previously selected tract, and de-highlights it on the map 
+	var gfxId, mapIdx, fl;
     
     mapIdx = evt.currentTarget.id.replace('mapDiv', '').replace('_graphics_layer', '');  //mapDiv0_graphics_layer
     fl = maps[parseInt(mapIdx, 10)].getLayer("tempFeatLyr" + mapIdx);
