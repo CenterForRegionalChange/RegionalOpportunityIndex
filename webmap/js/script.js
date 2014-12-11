@@ -355,7 +355,7 @@ var currentTocIndex = 0;
 
 function loadLayerByName(mapIndex, lyrName) { 'use strict';
     var key, i, il, svc, found = false;
-    
+    idStartOver();
     for (key in tocList) {
         if (tocList.hasOwnProperty(key) && !found) {
             svc = tocList[key];
@@ -423,7 +423,12 @@ function idForMap(mapIndex, evt) { 'use strict';
 
     //$('#identify' + mapIndex).html("<tr><td>Loading...</tr></td>");
     idQueryTask.execute(idQuery, function (results) {
-        var feature, content, renderField, idResults = results.features, fl = maps[mapIndex].getLayer("tempFeatLyr" + mapIndex), gfx, gfxId, $el;
+        var feature; 
+		var content; 
+		var renderField; 
+		var idResults = results.features; 
+		var fl = maps[mapIndex].getLayer("tempFeatLyr" + mapIndex);
+		var gfx, gfxId, $el;
     
         //maps[mapIndex].graphics.clear();        
         if (idResults.length > 0) {
@@ -446,9 +451,14 @@ function idForMap(mapIndex, evt) { 'use strict';
                 gfx = new esri.Graphic(feature.geometry, idSymbol, feature.attributes, null);
                 OP_MAPS[mapIndex].selectedGraphics[gfxId] = gfx;                    
                 maps[mapIndex].graphics.add(gfx);
-            }
-        }
-    });    
+            } 
+        } else { // handle cases with no identify result for the report function
+		content = '<tr id="' + gfxId + '"><td class="id-results-left">None: </td><td class="id-results-right"> no data</td></tr>';
+		$('#identify' + mapIndex).append(content);
+		}
+    },
+	function() {throw "Query Failed";}
+	);    
 }
 
 function checkLoadToc() { 'use strict';
@@ -662,13 +672,13 @@ function setMapLayer(mapIndex, svcIndex, lyrIndex) { 'use strict';
         
     // if the user already loaded this layer, use its cached info, else load it now.
     // its info will be cached in the callback event below (from the map's onLayerAdd event)
-    if (fLayers[svcIndex].hasOwnProperty(featLyrId)) {
-        setCachedLayerInfo(mapIndex, svcIndex, featLyrId);
-    } else {
+    //if (fLayers[svcIndex].hasOwnProperty(featLyrId)) {
+    //    setCachedLayerInfo(mapIndex, svcIndex, featLyrId);
+    //} else {
         featLyr = new esri.layers.FeatureLayer(SERVICES[svcIndex].url + 'FeatureServer/' + lyrIndex, { mode: esri.layers.FeatureLayer.MODE_SELECTION, id: "tempFeatLyr" + mapIndex });
         fLayers[svcIndex][featLyrId] = { legendInfo: [], description: "(no additional information)", name: "Unknown", displayField: "none", rendererField: "none" };
         maps[mapIndex].addLayer(featLyr);
-    }
+    //}
 
     // close the layers pane if the user got here from there
     //if ($('#layersPane' + mapIndex).css('display') === 'block') {
@@ -678,7 +688,7 @@ function setMapLayer(mapIndex, svcIndex, lyrIndex) { 'use strict';
 
 function processNewFeatLayer(lyr) { 'use strict';
     // process this layer after its added to the map, and cache its info if it's a feature layer
-    if (lyr.declaredClass === "esri.layers.FeatureLayer") {
+	if (lyr.declaredClass === "esri.layers.FeatureLayer") {
         var valArray, myLabel, i, il, info, outlineColor, mapIndex = lyr.id.replace("tempFeatLyr", ""); 
 
         // get renderer info and store in legend info cache
@@ -763,8 +773,22 @@ function showDescription(svcIndex, lyrId) { 'use strict';
     $('#layer-description').html('<b>' + fLayers[svcIndex][lyrId].name + ':</b> ' + fLayers[svcIndex][lyrId].description);    
 }
 
+function makeTempFeatLyr(mapIndex) {
+	if (typeof (maps[mapIndex].getLayer("tempFeatLyr" + mapIndex)) == "undefined") {
+        var svcIndex = OP_MAPS[mapIndex].svcIndex;
+		var lyrIndex = OP_MAPS[mapIndex].lyrIndex;
+		var featLyrId = "f" + lyrIndex;
+		featLyr = new esri.layers.FeatureLayer(SERVICES[svcIndex].url + 'FeatureServer/' + lyrIndex, { mode: esri.layers.FeatureLayer.MODE_SELECTION, id: "tempFeatLyr" + mapIndex });
+        //fLayers[svcIndex][featLyrId] = { legendInfo: [], description: "(no additional information)", name: "Unknown", displayField: "none", rendererField: "none" };
+        maps[mapIndex].addLayer(featLyr);
+    }
+}
+
 function idStartOver() { 'use strict';
-    maps[0].graphics.clear();
+    //makeTempFeatLyr(0);
+	//makeTempFeatLyr(1);
+	//makeTempFeatLyr(2);
+	maps[0].graphics.clear();
     maps[1].graphics.clear();
     maps[2].graphics.clear();
     $('#identify0').children().remove();
