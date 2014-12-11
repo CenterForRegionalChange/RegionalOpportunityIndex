@@ -620,6 +620,8 @@ function setMapLayer(mapIndex, svcIndex, lyrIndex) { 'use strict';
     
     $("#dialog-print").dialog('close');
     
+	idStartOver();
+	
     if (mapIndex === -1) { 
         mapIndex = tocActiveMap; 
         if ($("#back" + mapIndex).button("option", "disabled")) {
