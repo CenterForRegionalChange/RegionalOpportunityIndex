@@ -223,7 +223,7 @@ function createMap(j) { 'use strict';
                                 + '<strong>' + displayAlias + ":</strong> " + feature.attributes[fl.displayField]
                                 + (countyVal === "n/a" ? "" : '<br /><strong>County:</strong> ' + countyVal)
                                 + (feature.attributes.hasOwnProperty(fl.rendererField) ? '<br /><strong>Value:</strong> ' + roundToDecimal(feature.attributes[fl.rendererField], 2) : '')
-                                + (feature.attributes.hasOwnProperty(regionField) ? '<br /><strong>Regional Average:</strong> ' + roundToDecimal(feature.attributes[regionField], 2) : "") + '</div>');
+                                + (feature.attributes.hasOwnProperty(regionField) ? '<br /><strong>State Average:</strong> ' + roundToDecimal(feature.attributes[regionField], 2) : "") + '</div>');
                             
                             
                             
