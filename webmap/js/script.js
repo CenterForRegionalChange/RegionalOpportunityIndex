@@ -902,7 +902,7 @@ $(document).ready(function (e) { 'use strict';
                                              customText: {
                                                  panelTitle: $('#titleCon' + printMapIndex).html(),
                                                  layerTitle: "", // $('#titleCon' + printMapIndex).html(),
-                                                 sourceUrl: "http://mappingregionalchange.ucdavis.edu/roi/",
+                                                 sourceUrl: "http://interact.regionalchange.ucdavis.edu/roi/",
                                                  description: $('#desc' + printMapIndex + ' span').html()
                                              }});
             widgetPrint.start();
