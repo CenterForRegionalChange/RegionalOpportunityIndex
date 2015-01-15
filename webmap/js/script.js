@@ -233,7 +233,7 @@ function createMap(j) { 'use strict';
                                 if (key.substr(0, 2) === "z_") {
                                     val = feature.attributes[key];
                                     if (Math.abs(val) > maxAbsVal) { maxAbsVal = Math.abs(val); }
-                                    zSeries.push({
+                                    zSeries.unshift({
                                         layerName: zLayerLookup[key],
                                         name: results.fields[i].alias,
                                         data: [{ y: val, color: (val < 0 ? '#aa0000' : '#009900')}]
