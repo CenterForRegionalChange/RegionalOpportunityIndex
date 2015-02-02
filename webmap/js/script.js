@@ -1009,7 +1009,15 @@ $(document).ready(function (e) { 'use strict';
 
         resizeMaps(0);
     });
-
+    
+	// Handle Jump To button
+	$('#resourceLoad').on('change', function() {
+        if ($(this).val() !== "") {
+            window.open($(this).val());
+            $(this).prop('selectedIndex', 0);
+        } 
+    });
+	
     // Layer list buttons and panes
     $('button.back-button').button({ icons: { primary: 'ui-icon-triangle-1-w'}, disabled: true }).click(function () {
         var mapIndex = parseInt(this.id.replace('back', ''), 10);
