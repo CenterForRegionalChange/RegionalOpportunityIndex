@@ -120,7 +120,14 @@ var SERVICES = [{
         layerObs: [],
         defaultForMap: [],
         defaultLayerIndex: []
-    }];
+    }, {
+        name: "CalEnviroScreen",
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/CES_State/"),
+        layerObs: [],
+        defaultForMap: [],
+        defaultLayerIndex: []
+    }
+	];
 
 // format here is -- "z_index_field_name": "Related Layer's NAME in map service",
 var zLayerLookup = {
