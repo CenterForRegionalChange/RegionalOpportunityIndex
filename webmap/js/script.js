@@ -922,7 +922,18 @@ $(document).ready(function (e) { 'use strict';
         resizable: true,
         autoOpen: false
     });
-
+	
+	// loading message
+	$('#loading-message').dialog({
+       modal: true,
+       height: 'auto',
+       width: 350,
+       autoOpen: true,
+       resizable: false,
+       draggable: false 
+    });
+	
+	
     // Handle click on the +/- row to expand or collapse a toc group.
     $("#toc, #dialog-legend").on('click', '.layer-toggle', function () {
         var $sub = $(this).parent().next('ul'),
