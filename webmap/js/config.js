@@ -121,14 +121,14 @@ var SERVICES = [{
         defaultForMap: [],
         defaultLayerIndex: []
     }, {
-        name: "Putting Youth on the Map",
-        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/PYOM_State/"),
+        name: "CalEnviroScreen",
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/CES_State/"),
         layerObs: [],
         defaultForMap: [],
         defaultLayerIndex: []
-    }, {
-        name: "CalEnviroScreen",
-        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/CES_State/"),
+    },{
+        name: "Putting Youth on the Map",
+        url: varSerProv.concat("/arcgis/rest/services/CA_ROI/PYOM_State/"),
         layerObs: [],
         defaultForMap: [],
         defaultLayerIndex: []
