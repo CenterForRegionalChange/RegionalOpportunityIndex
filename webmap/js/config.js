@@ -1,4 +1,21 @@
-﻿// Services Provider.  Uncomment the line to provide services from the map server
+﻿/* Configuration file for the ROI webmap
+    Copyright (C) 2015  Center for Regional Change, University of California, Davis
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+	
+// Services Provider.  Uncomment the line to provide services from the map server
 // Note that the active line will need to be switched when you move code between the development and production servers
 // Additional comments here
 // varSerProv = "http://interact.regionalchange.ucdavis.edu" //Production Server
