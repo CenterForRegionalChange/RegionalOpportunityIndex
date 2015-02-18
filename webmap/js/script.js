@@ -493,7 +493,8 @@ function checkLoadToc() { 'use strict';
                 addLayerHandlers(tempOb, tempConfig, m, i);  
             }
         }
-    }
+    };
+	enableSyncing()
 }
 
 function addLayerHandlers(layerOb, cfg, mapIdx, svcIdx) { 'use strict';    
