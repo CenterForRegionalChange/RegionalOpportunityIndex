@@ -18,8 +18,16 @@
 // Services Provider.  Uncomment the line to provide services from the map server
 // Note that the active line will need to be switched when you move code between the development and production servers
 // Additional comments here
-// varSerProv = "http://interact.regionalchange.ucdavis.edu" //Production Server
-varSerProv = "http://crcdemo.caes.ucdavis.edu" //Development Server
+
+// Production/Development switch.
+var isProd = false; // Set to false to run the development
+
+if (isProd == false) {
+	varSerProv = "http://crcdemo.caes.ucdavis.edu"; //Development Server
+} else {
+	varSerProv = "http://interact.regionalchange.ucdavis.edu" //Production Server;
+};
+
 
 // Location of the geocode service
 var GEOCODE_URL = "http://tasks.arcgis.com/ArcGIS/rest/services/WorldLocator/GeocodeServer";
