@@ -20,7 +20,7 @@
 // Additional comments here
 
 // Production/Development switch.
-var isProd = true; // Set to false to run the development site
+var isProd = false; // Set to false to run the development site
 
 if (isProd == false) {
 	varSerProv = "http://crcdemo.caes.ucdavis.edu"; //Development Server
