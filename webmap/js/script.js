@@ -156,6 +156,170 @@ function syncMaps() { 'use strict';
     }
 }
 
+
+function idBox(evt) {
+    var mapIndex, idQueryTask, idQuery; //, geographicPoint = esri.geometry.webMercatorToGeographic(evt.mapPoint);
+    
+    mapIndex = this.id.replace('mapDiv', '');
+    if ($('#rdoClickIdentify').get(0).checked) {
+        
+        idQueryTask = new esri.tasks.QueryTask(SERVICES[OP_MAPS[mapIndex].svcIndex].url + "FeatureServer/" + OP_MAPS[mapIndex].lyrIndex); 
+        idQuery = new esri.tasks.Query();
+       
+        idQuery.geometry = evt.mapPoint;
+        idQuery.returnGeometry = true;
+        idQuery.outSpatialReference = maps[mapIndex].spatialReference;
+        idQuery.outFields = ["*"];
+    
+        //$('#identify' + mapIndex).html("<tr><td>Loading...</tr></td>");
+        idQueryTask.execute(idQuery, function (results) {
+            var i, il, key, val, maxAbsVal = 0, feature, content, zSeries = [], idResults = results.features, 
+                //fl = maps[mapIndex].getLayer("tempFeatLyr" + mapIndex);
+                regionField, countyVal, displayAlias, fl = fLayers[OP_MAPS[mapIndex].svcIndex]["f" + OP_MAPS[mapIndex].lyrIndex];
+        
+            if (idResults.length > 0) {
+                feature = idResults[0];
+                $('#id-chart' + mapIndex).empty();
+                if (feature.attributes.hasOwnProperty(fl.displayField)) {
+                    $("#dialog-identify" + mapIndex).dialog("option", "title", "Details for: " + feature.attributes[fl.displayField]);    
+                } else {
+                    $("#dialog-identify" + mapIndex).dialog("option", "title", "Unknown feature");
+                }
+                
+                if (!($("#dialog-identify" + mapIndex).dialog("isOpen"))) {
+                    $("#dialog-identify" + mapIndex).dialog("option", "position", { my: "left top", at: "left+5 bottom", of: $("#titleCon" + mapIndex) }).dialog('open');
+                }
+                
+                maps[mapIndex].graphics.clear();
+                maps[mapIndex].graphics.add(new esri.Graphic(feature.geometry, idSymbol, feature.attributes, null));
+                
+                if (fl.name.indexOf("Regional Opportunity Index") === -1 && $.inArray(fl.name, domainLayerNames) === -1) {
+                    regionField = "R" + fl.rendererField;
+                    //regionField = regionField.substring(0, 10);
+                    
+                    if (feature.attributes.hasOwnProperty("CntyNm") && fl.displayField !== "CntyNm") {
+                        countyVal = feature.attributes.CntyNm;
+                    } else if (feature.attributes.hasOwnProperty("CountyName") && fl.displayField !== "CountyName") {
+                        countyVal = feature.attributes.CountyName;
+                    } else {
+                        countyVal = "n/a";
+                    }
+                    
+                    displayAlias = fl.displayField;
+                    for (i = 0, il = results.fields.length; i < il; i += 1) {
+                        if (results.fields[i].name === fl.displayField) {
+                            displayAlias = results.fields[i].alias;
+                        }
+                    }
+                    
+                    $('#id-chart' + mapIndex).html('<div class="id-details">' + fl.name + '<hr size="1">' 
+                        + '<strong>' + displayAlias + ":</strong> " + feature.attributes[fl.displayField]
+                        + (countyVal === "n/a" ? "" : '<br /><strong>County:</strong> ' + countyVal)
+                        + (feature.attributes.hasOwnProperty(fl.rendererField) ? '<br /><strong>Value:</strong> ' + roundToDecimal(feature.attributes[fl.rendererField], 2) : '')
+                        + (feature.attributes.hasOwnProperty(regionField) ? '<br /><strong>State Average:</strong> ' + roundToDecimal(feature.attributes[regionField], 2) : "") + '</div>');
+                    
+                    
+                    
+                } else {
+                    for (i = 0, il = results.fields.length; i < il; i += 1) {
+                        key = results.fields[i].name;
+                        if (key.substr(0, 2) === "z_") {
+                            val = feature.attributes[key];
+                            if (Math.abs(val) > maxAbsVal) { maxAbsVal = Math.abs(val); }
+                            zSeries.unshift({
+                                layerName: zLayerLookup[key],
+                                name: results.fields[i].alias,
+                                data: [{ y: val, color: (val < 0 ? '#aa0000' : '#009900')}]
+                            });
+                        }
+                    }
+                  
+                    $('#id-chart' + mapIndex).highcharts({
+                        chart: {
+                            type: 'bar',
+                            height: 300,
+                            width: 350,
+                            margin: [40, 0, 50, 0],
+                            backgroundColor: '#ffffff'
+                        },
+                        title: {
+                            text: fl.name
+                        },
+                        credits: { enabled: false },
+                        series: zSeries,
+                        yAxis: {
+                            min: -2 * maxAbsVal,
+                            max: 2 * maxAbsVal,
+                            title: { text: "Overall Mean" },
+                            labels: {enabled: false},
+                            gridLineWidth: 0,
+                            plotLines: [{
+                                color: '#000000',
+                                value: 0,
+                                width: 1
+                            }]
+                        },
+                        xAxis: {
+                            labels: {enabled: false},
+                            title: null
+                        },
+                        legend: { enabled: false },
+                        plotOptions: {
+                            bar: {
+                                cursor: "pointer",
+                                colorByPoint: true,
+                                borderWidth: 1,
+                                borderColor: '#000000',
+                                shadow: true,
+                                pointPadding: 0.3,
+                                dataLabels: { enabled: true,
+                                             verticalAlign: "middle",
+                                             formatter: function() {
+                                                 return this.series.name;
+                                             },
+                                             style: {
+                                                 width:'70px',
+                                                 textAlign: 'right'
+                                             },
+                                             x: 0,
+                                             padding: 5
+                                },
+                                point: {
+                                    events: {
+                                        click: function () {
+                                            loadLayerByName(mapIndex, this.series.userOptions.layerName);
+                                            // Here's where we need to connect the change in the map
+                                            idBox(evt);
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            followPointer: true,
+                            formatter: function () {
+                                return "Map this";
+                            }
+                        }
+                    });
+                } 
+            }
+        });    
+        
+        
+    } else {
+        lastIdEvt = evt;
+        $('#dialog-report').dialog('open');
+        
+        idForMap(0, evt);
+        idForMap(1, evt);
+        idForMap(2, evt);
+    }
+}
+
+
 function createMap(j) { 'use strict';
     // Setup the popup window for identify results
     var tempMap, b, bl, tempBasemapOption,
@@ -182,164 +346,7 @@ function createMap(j) { 'use strict';
 
     dojo.connect(tempMap, "onLoad", function () {        
         // Set up event handler for map click
-        dojo.connect(maps[j], "onClick", function (evt) {
-            var mapIndex, idQueryTask, idQuery; //, geographicPoint = esri.geometry.webMercatorToGeographic(evt.mapPoint);
-            
-            mapIndex = this.id.replace('mapDiv', '');
-            if ($('#rdoClickIdentify').get(0).checked) {
-                
-                idQueryTask = new esri.tasks.QueryTask(SERVICES[OP_MAPS[mapIndex].svcIndex].url + "FeatureServer/" + OP_MAPS[mapIndex].lyrIndex); 
-                idQuery = new esri.tasks.Query();
-               
-                idQuery.geometry = evt.mapPoint;
-                idQuery.returnGeometry = true;
-                idQuery.outSpatialReference = maps[mapIndex].spatialReference;
-                idQuery.outFields = ["*"];
-            
-                //$('#identify' + mapIndex).html("<tr><td>Loading...</tr></td>");
-                idQueryTask.execute(idQuery, function (results) {
-                    var i, il, key, val, maxAbsVal = 0, feature, content, zSeries = [], idResults = results.features, 
-                        //fl = maps[mapIndex].getLayer("tempFeatLyr" + mapIndex);
-                        regionField, countyVal, displayAlias, fl = fLayers[OP_MAPS[mapIndex].svcIndex]["f" + OP_MAPS[mapIndex].lyrIndex];
-                
-                    if (idResults.length > 0) {
-                        feature = idResults[0];
-                        $('#id-chart' + mapIndex).empty();
-                        if (feature.attributes.hasOwnProperty(fl.displayField)) {
-                            $("#dialog-identify" + mapIndex).dialog("option", "title", "Details for: " + feature.attributes[fl.displayField]);    
-                        } else {
-                            $("#dialog-identify" + mapIndex).dialog("option", "title", "Unknown feature");
-                        }
-                        
-                        if (!($("#dialog-identify" + mapIndex).dialog("isOpen"))) {
-                            $("#dialog-identify" + mapIndex).dialog("option", "position", { my: "left top", at: "left+5 bottom", of: $("#titleCon" + mapIndex) }).dialog('open');
-                        }
-                        
-                        maps[mapIndex].graphics.clear();
-                        maps[mapIndex].graphics.add(new esri.Graphic(feature.geometry, idSymbol, feature.attributes, null));
-                        
-                        if (fl.name.indexOf("Regional Opportunity Index") === -1 && $.inArray(fl.name, domainLayerNames) === -1) {
-                            regionField = "R" + fl.rendererField;
-                            //regionField = regionField.substring(0, 10);
-                            
-                            if (feature.attributes.hasOwnProperty("CntyNm") && fl.displayField !== "CntyNm") {
-                                countyVal = feature.attributes.CntyNm;
-                            } else if (feature.attributes.hasOwnProperty("CountyName") && fl.displayField !== "CountyName") {
-                                countyVal = feature.attributes.CountyName;
-                            } else {
-                                countyVal = "n/a";
-                            }
-                            
-                            displayAlias = fl.displayField;
-                            for (i = 0, il = results.fields.length; i < il; i += 1) {
-                                if (results.fields[i].name === fl.displayField) {
-                                    displayAlias = results.fields[i].alias;
-                                }
-                            }
-                            
-                            $('#id-chart' + mapIndex).html('<div class="id-details">' + fl.name + '<hr size="1">' 
-                                + '<strong>' + displayAlias + ":</strong> " + feature.attributes[fl.displayField]
-                                + (countyVal === "n/a" ? "" : '<br /><strong>County:</strong> ' + countyVal)
-                                + (feature.attributes.hasOwnProperty(fl.rendererField) ? '<br /><strong>Value:</strong> ' + roundToDecimal(feature.attributes[fl.rendererField], 2) : '')
-                                + (feature.attributes.hasOwnProperty(regionField) ? '<br /><strong>State Average:</strong> ' + roundToDecimal(feature.attributes[regionField], 2) : "") + '</div>');
-                            
-                            
-                            
-                        } else {
-                            for (i = 0, il = results.fields.length; i < il; i += 1) {
-                                key = results.fields[i].name;
-                                if (key.substr(0, 2) === "z_") {
-                                    val = feature.attributes[key];
-                                    if (Math.abs(val) > maxAbsVal) { maxAbsVal = Math.abs(val); }
-                                    zSeries.unshift({
-                                        layerName: zLayerLookup[key],
-                                        name: results.fields[i].alias,
-                                        data: [{ y: val, color: (val < 0 ? '#aa0000' : '#009900')}]
-                                    });
-                                }
-                            }
-                          
-                            $('#id-chart' + mapIndex).highcharts({
-                                chart: {
-                                    type: 'bar',
-                                    height: 300,
-                                    width: 350,
-                                    margin: [40, 0, 50, 0],
-                                    backgroundColor: '#ffffff'
-                                },
-                                title: {
-                                    text: fl.name
-                                },
-                                credits: { enabled: false },
-                                series: zSeries,
-                                yAxis: {
-                                    min: -2 * maxAbsVal,
-                                    max: 2 * maxAbsVal,
-                                    title: { text: "Overall Mean" },
-                                    labels: {enabled: false},
-                                    gridLineWidth: 0,
-                                    plotLines: [{
-                                        color: '#000000',
-                                        value: 0,
-                                        width: 1
-                                    }]
-                                },
-                                xAxis: {
-                                    labels: {enabled: false},
-                                    title: null
-                                },
-                                legend: { enabled: false },
-                                plotOptions: {
-                                    bar: {
-                                        cursor: "pointer",
-                                        colorByPoint: true,
-                                        borderWidth: 1,
-                                        borderColor: '#000000',
-                                        shadow: true,
-                                        pointPadding: 0.3,
-                                        dataLabels: { enabled: true,
-                                                     verticalAlign: "middle",
-                                                     formatter: function() {
-                                                         return this.series.name;
-                                                     },
-                                                     style: {
-                                                         width:'70px',
-                                                         textAlign: 'right'
-                                                     },
-                                                     x: 0,
-                                                     padding: 5
-                                        },
-                                        point: {
-                                            events: {
-                                                click: function () {
-                                                    loadLayerByName(mapIndex, this.series.userOptions.layerName);
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                tooltip: {
-                                    enabled: true,
-                                    followPointer: true,
-                                    formatter: function () {
-                                        return "Map this";
-                                    }
-                                }
-                            });
-                        } 
-                    }
-                });    
-                
-                
-            } else {
-                lastIdEvt = evt;
-                $('#dialog-report').dialog('open');
-                
-                idForMap(0, evt);
-                idForMap(1, evt);
-                idForMap(2, evt);
-            }
-        });
+        dojo.connect(maps[j], "onClick", idBox(evt));
 
         // Other events
         dojo.connect(maps[j], "onExtentChange", syncMaps);
