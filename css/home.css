@@ -40,12 +40,12 @@ body {
     background-repeat: none;
     opacity: 0;
     z-index: 0;
-    animation: imageAnimation 24s linear infinite 0s;
-    -webkit-animation: imageAnimation 24s linear infinite 0s;
-    -moz-animation: imageAnimation 24s linear infinite 0s;
-    -o-animation: imageAnimation 24s linear infinite 0s;
-    -ms-animation: imageAnimation 24s linear infinite 0s;
-    animation: imageAnimation 24s linear infinite 0s;
+    animation: imageAnimation 30s linear infinite 0s;
+    -webkit-animation: imageAnimation 30s linear infinite 0s;
+    -moz-animation: imageAnimation 30s linear infinite 0s;
+    -o-animation: imageAnimation 30s linear infinite 0s;
+    -ms-animation: imageAnimation 30s linear infinite 0s;
+    animation: imageAnimation 30s linear infinite 0s;
 }
 
 .cb-slideshow li:nth-child(1) span {
@@ -60,6 +60,8 @@ body {
     -ms-animation-delay: 6s;
 	animation-delay: 6s;
 }
+
+
 
 .cb-slideshow li:nth-child(3) span {
     background-image: url(../images/index/farm.gif);
@@ -79,6 +81,16 @@ body {
     -o-animation-delay: 18s;
     -ms-animation-delay: 18s;
 	animation-delay: 18s;
+}
+
+.cb-slideshow li:nth-child(5) span {
+    background-image: url(../images/index/farmersmarket.gif);
+    animation-delay: 24s;
+	-webkit-animation-delay: 24s;
+	-moz-animation-delay: 24s;
+    -o-animation-delay: 24s;
+    -ms-animation-delay: 24s;
+	animation-delay: 24s;
 }
 
 
