@@ -721,7 +721,8 @@ function processNewFeatLayer(lyr) { 'use strict';
                 }
                 valArray = info.label.split(' - ');
                 if (valArray.length === 2) {
-                    myLabel = roundToDecimal(valArray[0], 2) + ' - ' + roundToDecimal(valArray[1], 2); 
+					myLabel = valArray[0] + ' - ' + valArray[1];
+                    //myLabel = roundToDecimal(valArray[0], 1) + ' - ' + roundToDecimal(valArray[1], 1); 
                 } else {
                     myLabel = info.label;
                 }
