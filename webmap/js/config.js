@@ -246,7 +246,7 @@ var SEARCH = [{
         title: "California Counties",
         index: 2,
         idField: "OBJECTID",
-        compareField: "CntyNm",
+        compareField: "countyname",
         filter: false
     },{
         title: "Census Tracts",
