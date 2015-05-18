@@ -278,6 +278,18 @@ var SEARCH = [{
         idField: "OBJECTID",
         compareField: "SenateName",
         filter: false
+    },{
+        title: "Sacramento-San Joaquin Delta",
+        index: 8,
+        idField: "OBJECTID",
+        compareField: "Name",
+        filter: false
+    },{
+        title: "IRWM Regions",
+        index: 9,
+        idField: "OBJECTID",
+        compareField: "Name",
+        filter: false
     }];
 
 var vgis = {
